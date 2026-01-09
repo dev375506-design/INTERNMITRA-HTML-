@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internमित्र - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #d4e4d8 0%, #c8d8cc 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: transparent;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #3730a3;
+        }
+
+        .logo .mitra {
+            color: #dc2626;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .menu-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1f2937;
+        }
+
+        .language-btn {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #1f2937;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 3rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3730a3;
+            margin-bottom: 2rem;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Latest Updates */
+        .update-item {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number.blue {
+            color: #3b82f6;
+        }
+
+        .stat-number.orange {
+            color: #f97316;
+        }
+
+        .stat-number.green {
+            color: #10b981;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Recommended */
+        .recommended-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .recommended-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .recommended-info h3 {
+            font-size: 1.2rem;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+
+        .recommended-details {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .view-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        .progress-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #3b82f6;
+            width: 40%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border: 3px solid #e5e7eb;
+        }
+
+        .progress-step.completed .progress-icon {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .progress-step.active .progress-icon {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .progress-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .progress-step.active .progress-label {
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .progress-bar-section {
+            margin-top: 2rem;
+        }
+
+        .progress-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .progress-percentage {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .progress-bar-container {
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #1e293b;
+            border-radius: 10px;
+            width: 40%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-bar-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        /* Bottom Grid */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Internship Card */
+        .internship-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .internship-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .internship-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+
+        .internship-meta {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-shortlisted {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-selected {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .skill-match {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .skill-match-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .skill-match-percentage {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        .apply-btn {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .container {
+                padding: 1rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-steps {
+                overflow-x: auto;
+            }
+
+            .progress-step {
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            Intern<span class="mitra">मित्र</span>
+        </div>
+        <div class="header-actions">
+            <div class="menu-icon">☰</div>
+            <button class="language-btn">GU</button>
+        </div>
+        <div class="back_button" onclick="window.location.href='index.html'" style="position: absolute; align-items:center ;justify-content: center;margin-left: 700px; left: 20px; cursor: pointer; font-size: 1.2rem; color: #667eea;">← Back to Home</div>
+
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1 class="page-title">Dashboard</h1>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Latest Updates -->
+            <div class="card">
+                <h2 class="card-title">Latest updates</h2>
+                <div class="update-item">2 new recommended internships</div>
+                <div class="update-item">Interview scheduled: Monday, 3 PM</div>
+                <div class="update-item">Application status updated</div>
+            </div>
+
+            <!-- Stats -->
+            <div class="card">
+                <h2 class="card-title">Stats</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number blue">12</div>
+                        <div class="stat-label">Applied</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number orange">3</div>
+                        <div class="stat-label">Interviews</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number green">1</div>
+                        <div class="stat-label">Selected</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended -->
+            <div class="card">
+                <h2 class="card-title">Recommended</h2>
+                <div class="recommended-item">
+                    <div class="recommended-info">
+                        <h3>Frontend Intern</h3>
+                        <div class="recommended-details">Remote • 3 months • ₹10k</div>
+                    </div>
+                    <button class="view-btn">View</button>
+                </div>
+                <div class="recommended-item">
+                    <div class="recommended-info">
+                        <h3>Data Analyst Intern</h3>
+                        <div class="recommended-details">Remote • 3 months • ₹10k</div>
+                    </div>
+                    <button class="view-btn">View</button>
+                </div>
+                <div class="recommended-item">
+                    <div class="recommended-info">
+                        <h3>Marketing Intern</h3>
+                        <div class="recommended-details">Remote • 3 months • ₹10k</div>
+                    </div>
+                    <button class="view-btn">View</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Progress -->
+        <div class="progress-section">
+            <h2 class="card-title">Your Application Progress</h2>
+            
+            <div class="progress-steps">
+                <div class="progress-line">
+                    <div class="progress-line-fill"></div>
+                </div>
+                
+                <div class="progress-step completed">
+                    <div class="progress-icon">📄</div>
+                    <div class="progress-label">Applied</div>
+                </div>
+                
+                <div class="progress-step completed">
+                    <div class="progress-icon">✓</div>
+                    <div class="progress-label">Shortlisted</div>
+                </div>
+                
+                <div class="progress-step active">
+                    <div class="progress-icon">👤</div>
+                    <div class="progress-label">Interview</div>
+                </div>
+                
+                <div class="progress-step">
+                    <div class="progress-icon">⭐</div>
+                    <div class="progress-label">Offer</div>
+                </div>
+                
+                <div class="progress-step">
+                    <div class="progress-icon">⟳</div>
+                    <div class="progress-label">In Progress</div>
+                </div>
+                
+                <div class="progress-step">
+                    <div class="progress-icon">✓</div>
+                    <div class="progress-label">Completed</div>
+                </div>
+            </div>
+
+            <div class="progress-bar-section">
+                <div class="progress-bar-header">
+                    <div class="progress-bar-title">Interview</div>
+                    <div class="progress-percentage">40%</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div class="progress-bar-labels">
+                    <span>Applied</span>
+                    <span>Shortlisted</span>
+                    <span>Interview</span>
+                    <span>Offer</span>
+                    <span>In Progress</span>
+                    <span>Completed</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Grid -->
+        <div class="bottom-grid">
+            <!-- Applied Internships -->
+            <div class="card">
+                <h2 class="card-title">Applied Internships</h2>
+                
+                <div class="internship-card">
+                    <div class="internship-header">
+                        <div>
+                            <div class="internship-title">React Intern @ Acme</div>
+                            <div class="internship-meta">Remote • 3 months • ₹10k</div>
+                        </div>
+                        <span class="status-badge status-pending">Pending</span>
+                    </div>
+                    <div class="skill-match">
+                        <span class="skill-match-label">Skill Match</span>
+                        <span class="skill-match-percentage">78%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 78%"></div>
+                    </div>
+                </div>
+
+                <div class="internship-card">
+                    <div class="internship-header">
+                        <div>
+                            <div class="internship-title">Data Intern @ Quant</div>
+                            <div class="internship-meta">Remote • 3 months • ₹10k</div>
+                        </div>
+                        <span class="status-badge status-shortlisted">Shortlisted</span>
+                    </div>
+                    <div class="skill-match">
+                        <span class="skill-match-label">Skill Match</span>
+                        <span class="skill-match-percentage">64%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 64%"></div>
+                    </div>
+                </div>
+
+                <div class="internship-card">
+                    <div class="internship-header">
+                        <div>
+                            <div class="internship-title">UI Intern @ Pixel</div>
+                            <div class="internship-meta">Remote • 3 months • ₹10k</div>
+                        </div>
+                        <span class="status-badge status-selected">Selected</span>
+                    </div>
+                    <div class="skill-match">
+                        <span class="skill-match-label">Skill Match</span>
+                        <span class="skill-match-percentage">88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saved/Wishlist Internships -->
+            <div class="card">
+                <h2 class="card-title">Saved / Wishlist Internships</h2>
+                
+                <div class="internship-card">
+                    <div class="internship-header">
+                        <div>
+                            <div class="internship-title">UI/UX Intern • Pune</div>
+                        </div>
+                        <button class="apply-btn">Apply</button>
+                    </div>
+                    <div class="skill-match">
+                        <span class="skill-match-label">Skill Match</span>
+                        <span class="skill-match-percentage">72%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 72%"></div>
+                    </div>
+                </div>
+
+                <div class="internship-card">
+                    <div class="internship-header">
+                        <div>
+                            <div class="internship-title">ML Intern • Remote</div>
+                        </div>
+                        <button class="apply-btn">Apply</button>
+                    </div>
+                    <div class="skill-match">
+                        <span class="skill-match-label">Skill Match</span>
+                        <span class="skill-match-percentage">61%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 61%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

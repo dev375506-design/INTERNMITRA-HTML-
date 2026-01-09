@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="chatbot" href="chatbot.html">
+    <link rel="dashboard" href="dashboard.html">
+
+    <title>Internमित्र - Your Smart Guide to the Right Internship</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #D6E7CD 0%, #764ba2 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .language-selector {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #8eefa3 0%, #fad620 100%);
+            color: #0D28BD;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .cta-button2 {
+            background: #22df0d;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 3rem 2rem;
+            background: white;
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Why Choose Section */
+        .why-choose {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .categories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .explore-btn {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-location {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .testimonial-company {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .subscribe-btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Internमित्र</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#internships">Internships</a></li>
+                <a href="dashboard.html" class="cta-button2">Sign up</a>
+            </ul>
+            <button class="language-selector">EN</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Intern मित्र – <br>Your Smart Guide to the <br>Right Internship</h1>
+        <p>"DISCOVER INTERNSHIPS MADE FOR YOU"<br>
+        Intern मित्र helps you find the perfect internship that matches your skills, interests, and location in just a few clicks!</p>
+        <a href="chatbot.html" class="cta-button">Find My Internship</a>
+
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats">
+        <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Companies<br>Trusted Partners</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">AI Powered</span>
+            <span class="stat-label">Smart Matching</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">10,000+</span>
+            <span class="stat-label">Success Stories</span>
+        </div>
+    </div>
+
+    <!-- Why Choose Section -->
+    <section class="why-choose" id="about">
+        <h2 class="section-title">Why Choose Intern मित्र</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">We're not just a platform - we're your trusted partner in building a successful career. Here's what makes us different.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <h3>Real-time Updates</h3>
+                <p>Get instant notifications about new opportunities and application status updates</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Verified Opportunities</h3>
+                <p>All internships are verified and come from trusted companies ensuring quality and safety</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Success Tracking</h3>
+                <p>Monitor your progress and celebrate achievements with our comprehensive tracking system</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3>Pan-India Access</h3>
+                <p>Opportunities from rural to urban areas, ensuring everyone gets equal access to career growth</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Inclusive Support</h3>
+                <p>Designed specifically for first-generation learners with multilingual support and guidance</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI Powered Matching</h3>
+                <p>Advanced algorithms that understand your unique profile and match you with the most relevant opportunities</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">How Internमित्र Works</h2>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Create Your Profile</h3>
+                <p>Tell us about your education, skills, and interests in just 2 minutes</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>AI Finds Matches</h3>
+                <p>Our smart algorithm analyzes thousands of internships to find your perfect fit</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Review & Apply</h3>
+                <p>Get personalized recommendations and apply to internships that match your profile</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Start Your Journey</h3>
+                <p>Begin your career with confidence and grow with experienced mentors</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="internships">
+        <h2 class="section-title">Explore Internship Categories</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">Discover opportunities across diverse sectors. From technology to healthcare, find internships that align with your passion and career goals.</p>
+        <p style="text-align: center; margin-bottom: 3rem; font-weight: bold; color: #667eea;">Trusted by 50,000+ students nationwide</p>
+        
+        <div class="categories-grid">
+            <div class="category-card">
+                <h3>Technology & IT</h3>
+                <p>Software development, data science, cybersecurity</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Creative & Design</h3>
+                <p>Graphic design, content creation, multimedia</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Business & Finance</h3>
+                <p>Marketing, sales, accounting, business operations</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Engineering</h3>
+                <p>Mechanical, civil, electrical engineering</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Healthcare</h3>
+                <p>Medical assistance, healthcare administration</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Manufacturing</h3>
+                <p>Production, quality control, operations</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Media & Communications</h3>
+                <p>Journalism, PR, social media management</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Education</h3>
+                <p>Teaching assistance, curriculum development</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+            <div class="category-card">
+                <h3>Government</h3>
+                <p>Public administration, policy research</p>
+                <button class="explore-btn">Explore Opportunities</button>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <button class="cta-button">View All Categories</button>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">Success Stories from Every Corner of India</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">Real stories from real students who transformed their careers through Internमित्र. Your success story could be next!</p>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Intern मित्र changed my life completely! Being from a small village, I never thought I could work with a tech company in Bangalore. The AI recommendations were perfect for my skills."</p>
+                <div class="testimonial-author">Priya Sharma</div>
+                <div class="testimonial-location">Delhi, India</div>
+                <div class="testimonial-company">@ TechVision Pvt Ltd<br>Marketing Intern at Tech Startup</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"मैं पहली पीढ़ी का छात्र हूँ। Intern मित्र ने न केवल मुझे इंटर्नशिप दिलाई बल्कि मेरे आत्मविश्वास को भी बढ़ाया। The platform is so easy to use!"</p>
+                <div class="testimonial-author">Rajesh Kumar</div>
+                <div class="testimonial-location">Tribal area, Jharkhand</div>
+                <div class="testimonial-company">@Data Corp Solutions<br>Data Entry Specialist</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The recommendation system is incredible! It matched me with a design internship that perfectly aligned with my creative skills. Now I'm working with an amazing team in Mumbai."</p>
+                <div class="testimonial-author">Anjali Patel</div>
+                <div class="testimonial-location">Urban Gujarat</div>
+                <div class="testimonial-company">@ Creative Studios<br>Graphic Designer Intern</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <h2>Your Dream Internship is Just One Click Away</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Don't let opportunities pass by. Join thousands of students who have already transformed their careers with Intern मित्र. Your future starts today!</p>
+        <button class="cta-button" style="background: white; color: #667eea;">Start New Journey</button>
+        <div class="cta-features">
+            <div class="cta-feature">✓ 100% Free to Use</div>
+            <div class="cta-feature">✓ No Hidden Charges</div>
+            <div class="cta-feature">✓ Instant Access</div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2>Stay Updated with Latest Opportunities</h2>
+        <p>Get weekly updates about new internships, career tips, and success stories directly in your inbox</p>
+        <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address">
+            <button type="submit" class="subscribe-btn">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Internमित्र</h3>
+                <p style="color: #cbd5e0; margin-bottom: 1rem;">Your Smart Guide to the Right Internship</p>
+                <p style="color: #cbd5e0; font-size: 0.9rem;">Made with ❤️ for the youth of India</p>
+                <p style="color: #cbd5e0; font-size: 0.9rem; margin-top: 1rem;">An initiative by the Government of India</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">ig</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#internships">Internships</a></li>
+                    <li><a href="#signup">Sign Up / Login</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Video Tutorials</a></li>
+                    <li><a href="#">User Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Career Guidance</a></li>
+                    <li><a href="#">Resume Builder</a></li>
+                    <li><a href="#">Skill Development</a></li>
+                    <li><a href="#">Industry Insights</a></li>
+                    <li><a href="#">Interview Tips</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>📧 Email: support@internmitra.com</li>
+                    <li>📱 Phone: +91 XXXXXXXXXX</li>
+                    <li>📍 Address: New Delhi, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Internमित्र - PM Internship Scheme. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
