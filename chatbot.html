@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
     <title>Internमित्र CHATBOT</title>
     <style>
         * {
@@ -415,110 +416,8 @@
             <button class="send-button" id="sendButton" title="Send message">➤</button>
         </div>
     </div>
+    <script src="script_CHATBOT.js"></script>
 
-    <script>
-        const messagesArea = document.getElementById('messagesArea');
-        const messageInput = document.getElementById('messageInput');
-        const sendButton = document.getElementById('sendButton');
-
-        // Sample responses
-        const responses = [
-            "That sounds interesting! Can you tell me more about your skills and experience level?",
-            "Great! What location are you interested in for your internship?",
-            "Perfect! Let me find the best internship matches for you...",
-            "I found several internships that match your profile! Would you like to see them?",
-            "Based on your interests, I recommend exploring opportunities in Technology, Design, or Business sectors."
-        ];
-
-        let responseIndex = 0;
-
-        function addMessage(text, isUser = false) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-            
-            if (!isUser) {
-                messageDiv.innerHTML = `
-                    <div class="avatar">
-                        <div class="bot-avatar">
-                            <div class="bot-face">😊</div>
-                        </div>
-                    </div>
-                    <div class="message-content">${text}</div>
-                `;
-            } else {
-                messageDiv.innerHTML = `
-                    <div class="message-content">${text}</div>
-                `;
-            }
-            
-            messagesArea.appendChild(messageDiv);
-            messagesArea.scrollTop = messagesArea.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message bot';
-            typingDiv.id = 'typing-indicator';
-            typingDiv.innerHTML = `
-                <div class="avatar">
-                    <div class="bot-avatar">
-                        <div class="bot-face">😊</div>
-                    </div>
-                </div>
-                <div class="typing-indicator">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-            `;
-            messagesArea.appendChild(typingDiv);
-            messagesArea.scrollTop = messagesArea.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const typingDiv = document.getElementById('typing-indicator');
-            if (typingDiv) {
-                typingDiv.remove();
-            }
-        }
-
-        function sendMessage() {
-            const text = messageInput.value.trim();
-            if (text === '') return;
-
-            // Add user message
-            addMessage(text, true);
-            messageInput.value = '';
-
-            // Show typing indicator
-            showTypingIndicator();
-
-            // Simulate bot response
-            setTimeout(() => {
-                removeTypingIndicator();
-                const response = responses[responseIndex % responses.length];
-                addMessage(response);
-                responseIndex++;
-            }, 1500);
-        }
-
-        // Event listeners
-        sendButton.addEventListener('click', sendMessage);
-        messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Add button functionality
-        document.querySelector('.add-button').addEventListener('click', () => {
-            alert('Attachment feature coming soon!');
-        });
-
-        // Voice input functionality
-        document.querySelector('.icon-button').addEventListener('click', () => {
-            alert('Voice input feature coming soon!');
-        });
-    </script>
+    
 </body>
 </html>
