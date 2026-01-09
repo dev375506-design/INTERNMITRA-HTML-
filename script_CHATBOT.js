@@ -1,4 +1,4 @@
-// Wait for DOM to fully load
+
 document.addEventListener('DOMContentLoaded', function() {
     const messagesArea = document.getElementById('messagesArea');
     const messageInput = document.getElementById('messageInput');
@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const addButton = document.querySelector('.add-button');
     const voiceButton = document.querySelector('.icon-button');
 
-    // Check if elements exist
+    
     if (!messagesArea || !messageInput || !sendButton) {
         console.error('Required elements not found');
         return;
     }
 
-    // Conversation flow
+    
     const conversationFlow = [
         {
             trigger: ['hi', 'hello', 'hey', 'start'],
@@ -58,12 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function getSmartResponse(userMessage) {
         const message = userMessage.toLowerCase();
         
-        // Check for matches in conversation flow
         for (let flow of conversationFlow) {
             if (flow.trigger) {
                 for (let trigger of flow.trigger) {
                     if (message.includes(trigger)) {
-                        // Store context
+                        
                         if (conversationStep === 1) {
                             userContext.interests.push(trigger);
                         } else if (conversationStep === 2) {
@@ -78,13 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Show results after gathering info
+        
         if (conversationStep >= 3 && userContext.location) {
             conversationStep = 0;
             return generateResults();
         }
         
-        // Default response
+        
         conversationStep++;
         return conversationFlow[conversationFlow.length - 1].response;
     }
@@ -187,21 +186,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function sendMessage() {
         const text = messageInput.value.trim();
         
-        // Validate input
+        
         if (text === '') return;
         if (text.length > 500) {
             alert('Message is too long. Please keep it under 500 characters.');
             return;
         }
 
-        // Add user message
         addMessage(text, true);
         messageInput.value = '';
 
-        // Show typing indicator
+        
         showTypingIndicator();
 
-        // Simulate bot response with smart responses
         setTimeout(function() {
             removeTypingIndicator();
             const response = getSmartResponse(text);
@@ -209,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1500);
     }
 
-    // Event listeners
+    
     if (sendButton) {
         sendButton.addEventListener('click', sendMessage);
     }
@@ -223,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add button functionality
+    
     if (addButton) {
         addButton.addEventListener('click', function() {
             const fileInput = document.createElement('input');
@@ -246,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Voice input functionality
+    
     if (voiceButton) {
         voiceButton.addEventListener('click', function() {
             if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
